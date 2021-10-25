@@ -35,7 +35,7 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-     res.render('books/details', {title: 'Add User',books: {"Title":"","Description":"","Price":"","Author":"","Genre":""}})
+     res.render('books/details', {title: 'Add Book',books: {"Title":"","Description":"","Price":"","Author":"","Genre":""}})
     
 
 });
@@ -54,7 +54,7 @@ router.post('/add', (req, res, next) => {
       "Genre": req.body.genre
     });
 
-    book.create(newBook, (err, User) => {
+    book.create(newBook, (err, Book) => {
         if(err){
             console.log(err);
             // stops server
@@ -75,14 +75,14 @@ router.get('/:id', (req, res, next) => {
      *****************/
      let id = req.params.id;
     
-     //Find user by id
+     //Find book by id
     book.findById(id, (err, bookToEdit) => {
          if(err){
              console.log(err);
              res.end(err);
          }else{
              // show edit view
-             res.render('books/details', {title: 'Edit User', books: bookToEdit});
+             res.render('books/details', {title: 'Edit Book', books: bookToEdit});
          }
      });
 });
@@ -109,14 +109,14 @@ router.post('/:id', (req, res, next) => {
         if(err){
             console.log(err);
         }else{
-            // refresh user list
+            // refresh book list
             res.redirect('/books');
         }
     });
 
 });
 
-// GET - process the delete by user id
+// GET - process the delete by book id
 router.get('/delete/:id', (req, res, next) => {
 
     /*****************
@@ -128,7 +128,7 @@ router.get('/delete/:id', (req, res, next) => {
         if(err){
             console.log(err);
         }else{
-            // refresh user list
+            // refresh book list
             res.redirect('/books');
         }
     })
